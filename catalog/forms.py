@@ -34,3 +34,42 @@ class SignUpForm(UserCreationForm):
         if UserProfile.objects.filter(email=email).exists():
             raise forms.ValidationError("Ошибка! Такой E-mail уже существует!")
         return email
+
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+
+class ProfilePicForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
+
+class RequestCreateForm(forms.ModelForm):
+    name = forms.CharField(label='Заголовок', widget=forms.TextInput, required=True)
+    description = forms.CharField(label='Описание', widget=forms.Textarea, required=True)
+    category = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all(), required=True)
+    image = forms.ImageField(
+        label='План помещения', widget=forms.FileInput,
+        help_text='Изображения должно быть в одном из форматов (jpg, jpeg, png, bmp) и с максимальным размером 2 МБ',
+        required=True)
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        image_types = ['.jpg', '.jpeg', '.png', '.bpm']
+        for image_type in image_types:
+            if image_type in str(image) and image.size <= 2097152:
+                return image
+
+        raise forms.ValidationError(
+            "Ошибка: "
+            "Файл должен иметь формат: jpg, jpeg, png, bmp и размер не более 2МБ"
+        )
+
+    class Meta:
+        model = Request
+        fields = ('name', 'description', 'category', 'image', )

@@ -4,14 +4,13 @@
 
 {% block content %}
   <h2>Регистрация</h2>
-  <form method="post">
+  <form method="post" >
     {% csrf_token %}
     {{ form.as_p }}
-          <h3>Загрузите фото профиля по желанию</h3>
-        {% if user.avatar %}
-        <img src="{{user.avatar.url}} avatar" alt="{{user.username}}'s avatar">
-        {% endif %}
-        <button type="submit">Загрузить</button>
+      <h3>Загрузите фото профиля по желанию</h3>
+      {% if user.avatar %}
+      <img src="{{user.avatar.url}} avatar" alt="{{user.username}}'s avatar">
+      {% endif %}
       <br>
       <br>
       <br>

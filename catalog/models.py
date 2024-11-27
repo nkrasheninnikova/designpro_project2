@@ -34,3 +34,10 @@ class Request(models.Model):
 
     def __str__(self):
         return self.name
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_images/', default='default.jpg')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

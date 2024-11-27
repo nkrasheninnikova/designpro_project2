@@ -35,11 +35,11 @@
                 <li><a href="{% url 'index' %}">Главная</a></li>
                 {% if user.is_authenticated %}
                 <li>Пользователь: {{ user.get_username }}</li>
-                <li><a href="/">Выйти</a></li>
+                <li><a href="{% url 'logout'%}?next={{request.path}}">Выйти</a></li>
                 <li><a href="{% url 'profile' %}">Личный кабинет</a></li>
-                <li><a href="/">Создать заявку</a></li>
+                <li><a href="{% url 'request_add' %}">Создать заявку</a></li>
                 {% if user.is_staff %}
-                <li><a href="/">Заявки</a></li>
+                <li><a href="{% url 'requests' %}">Заявки</a></li>
                 <li><a href="/">Категории</a></li>
                 {% endif %}
                 {% else %}
