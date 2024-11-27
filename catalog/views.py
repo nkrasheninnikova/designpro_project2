@@ -76,3 +76,15 @@ def requests(request):
     new_requests = Request.objects.filter(status='Н')
     context = {'new_requests': new_requests}
     return render(request, 'request.html', context)
+
+@login_required
+def request_delete(request, pk):
+    request_obj = Request.objects.get(id=pk)
+    if request_obj.status == 'Н':
+        return render(request, 'request_delete_confirm.html', {'request': request_obj})
+
+@login_required
+def request_delete_confirm(request, pk):
+    request = Request.objects.get(id=pk)
+    request.delete()
+    return redirect('profile')
