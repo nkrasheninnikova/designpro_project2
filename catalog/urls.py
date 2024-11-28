@@ -11,4 +11,5 @@ urlpatterns = [
     path('request/delete/<int:pk>/', views.request_delete, name="request_delete"),
     path('request/delete/confirm/<int:pk>/', views.request_delete_confirm, name="request_delete_confirm"),
     path('request/done/change/<int:pk>/', views.request_done_change, name="request_done_change"),
+    path('request/work/change/<int:pk>/', views.request_work_change, name="request_work_change"),
 ]

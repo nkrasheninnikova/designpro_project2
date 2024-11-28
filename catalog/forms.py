@@ -70,3 +70,10 @@ class RequestDoneStatusChangeForm(forms.ModelForm):
     class Meta:
         model = Request
         fields = ('image_done', )
+
+class RequestWorkStatusChangeForm(forms.ModelForm):
+    comment = forms.CharField(label='Комментарий', widget=forms.TextInput, required=True)
+
+    class Meta:
+        model = Request
+        fields = ('comment', )
