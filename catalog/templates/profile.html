@@ -1,8 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block title %} Профиль {% endblock %}
-
 {% block content %}
+
 <h1>Личный кабинет</h1>
 
 
@@ -44,10 +44,6 @@
     <p>В данный момент у вас нет заявок</p>
     {% endif %}
     <h3>Ваши данные:</h3>
-    {% load static %}
-    <img
-      style="width:150px;height:150px;" />
-
     <ul>
         <li>Логин:{{user.username}}</li>
         <li>Email:{{user.email}}</li>

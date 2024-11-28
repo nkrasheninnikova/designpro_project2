@@ -6,6 +6,7 @@ from django.template.defaultfilters import default
 
 class UserProfile(User):
     fio = models.CharField(max_length=100,blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Категория', blank=False)
