@@ -3,7 +3,6 @@ from django.db import models
 from django import forms
 from django.template.defaultfilters import default
 
-
 class UserProfile(User):
     fio = models.CharField(max_length=100,blank=True)
 

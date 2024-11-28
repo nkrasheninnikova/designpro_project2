@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
-from setuptools.command.upload import upload
 
 from .models import *
 
@@ -39,13 +38,6 @@ class SignUpForm(UserCreationForm):
         return email
 
 
-class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
-
 
 class RequestCreateForm(forms.ModelForm):
     name = forms.CharField(label='Заголовок', widget=forms.TextInput, required=True)
@@ -71,3 +63,10 @@ class RequestCreateForm(forms.ModelForm):
     class Meta:
         model = Request
         fields = ('name', 'description', 'category', 'image', )
+
+class RequestDoneStatusChangeForm(forms.ModelForm):
+    image_done = forms.ImageField(label='Готовое изображение', required=True)
+
+    class Meta:
+        model = Request
+        fields = ('image_done', )
