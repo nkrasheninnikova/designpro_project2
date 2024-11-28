@@ -40,7 +40,7 @@
                 <li><a href="{% url 'request_add' %}">Создать заявку</a></li>
                 {% if user.is_staff %}
                 <li><a href="{% url 'requests' %}">Заявки</a></li>
-                <li><a href="/">Категории</a></li>
+                <li><a href="{% url 'categories' %}">Категории</a></li>
                 {% endif %}
                 {% else %}
                 <li><a href="{% url 'signup' %}">Регистрация</a></li>

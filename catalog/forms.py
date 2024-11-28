@@ -77,3 +77,9 @@ class RequestWorkStatusChangeForm(forms.ModelForm):
     class Meta:
         model = Request
         fields = ('comment', )
+
+class CategoryCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Category
+        fields = ('name', )

@@ -12,4 +12,7 @@ urlpatterns = [
     path('request/delete/confirm/<int:pk>/', views.request_delete_confirm, name="request_delete_confirm"),
     path('request/done/change/<int:pk>/', views.request_done_change, name="request_done_change"),
     path('request/work/change/<int:pk>/', views.request_work_change, name="request_work_change"),
+    path('categories/', views.categories, name="categories"),
+    path('category/create/', views.category_create, name="category_create"),
+    path('category/delete/<int:pk>/', views.category_delete, name="category_delete"),
 ]
