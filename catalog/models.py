@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django import forms
+from django.template.defaultfilters import default
 
 
 class UserProfile(User):
@@ -35,9 +37,9 @@ class Request(models.Model):
     def __str__(self):
         return self.name
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_images/', default='default.jpg')
+
+class SignUp(models.Model):
+    image = models.ImageField(upload_to='static/catalog/images/', default='static/catalog/images/def-avatar.jpg')
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return str(self.image)

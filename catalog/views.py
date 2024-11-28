@@ -40,23 +40,6 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})  # Возвращаем форму для отображения
 
 
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        pic_form = ProfilePicForm(request.POST, request.FILES)
-
-        if user_form.is_valid() and pic_form.is_valid():
-            user = user_form.save()
-            profile = pic_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            login(request, user)
-            return redirect('home')  # перенаправление на домашнюю страницу
-    else:
-        user_form = UserRegistrationForm()
-        pic_form = ProfilePicForm()
-
-    return render(request, 'signup.html', {'user_form': user_form, 'pic_form': pic_form})
 
 @login_required
 def request_add(request):
