@@ -19,6 +19,10 @@ def indexacc(request):
     user_requests = Request.objects.filter(user=request.user)
     return render(request, 'profile.html', {'user_requests': user_requests})
 
+@login_required
+def indexacc_filter(request):
+    user_filter_requests = Request.objects.filter(user=request.user, status=request.GET['status'][0])
+    return render(request, 'profile.html', {'user_requests': user_filter_requests})
 
 def signup(request):
     if request.method == 'POST':
