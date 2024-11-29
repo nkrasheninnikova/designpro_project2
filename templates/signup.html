@@ -7,7 +7,6 @@
   <form method="post" >
     {% csrf_token %}
     {{ form.as_p }}
-    {{signup_form.as_p}}
     <button type="submit">Зарегистрироваться</button>
   </form>
     {% endblock %}
