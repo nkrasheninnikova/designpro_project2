@@ -31,6 +31,8 @@ def signup(request):
             user = form.save(commit=False)
             user.fio = form.cleaned_data['fio']
             username = form.cleaned_data['username']
+            if 'image' in request.FILES:
+                user.image = request.FILES['image']
             password = form.cleaned_data['password1']
             user.set_password(password)
             user.save()

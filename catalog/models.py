@@ -5,7 +5,7 @@ from django import forms
 
 class UserProfile(User):
     fio = models.CharField(max_length=100,blank=True)
-    image = models.ImageField(upload_to='images/', default='def-avatar.jpg', blank=False)
+    image = models.ImageField(upload_to='avatars/', default='avatars/def-avatar.jpg', blank=False)
 
 
 class Category(models.Model):

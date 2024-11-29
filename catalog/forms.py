@@ -38,14 +38,6 @@ class SignUpForm(UserCreationForm):
             raise forms.ValidationError("Ошибка! Такой E-mail уже существует!")
         return email
 
-class UserProfileForm(UserCreationForm):
-    image = forms.ImageField(label='Загрузите фотографию для аватарки', widget=forms.FileInput, required=False)
-
-
-    class Meta:
-        model = UserProfile
-        fields = ['image']
-
 
 class RequestCreateForm(forms.ModelForm):
     name = forms.CharField(label='Заголовок', widget=forms.TextInput, required=True)
