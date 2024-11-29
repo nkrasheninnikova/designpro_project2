@@ -24,6 +24,7 @@ def indexacc_filter(request):
     user_filter_requests = Request.objects.filter(user=request.user, status=request.GET['status'][0])
     return render(request, 'profile.html', {'user_requests': user_filter_requests})
 
+
 def signup(request):
     if request.method == 'POST':
         user_form = SignUpForm(request.POST)
@@ -42,8 +43,9 @@ def signup(request):
                 profile.save()
             login(request, user)  # вход пользователя после регистрации
     else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+        user_form = SignUpForm()
+        profile_form = UserProfileForm()
+    return render(request, 'signup.html', {'user_form': user_form, 'profile_form': profile_form})
 
 def request_add(request):
     if request.method == 'POST':
