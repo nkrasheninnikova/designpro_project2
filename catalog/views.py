@@ -26,27 +26,25 @@ def indexacc_filter(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.fio = form.cleaned_data['fio']
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user.set_password(password)
+        user_form = SignUpForm(request.POST)
+        profile_form = UserProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            user.fio = user_form.cleaned_data['fio']
+            user.name = user_form.cleaned_data['username']
+            password = user_form.cleaned_data['password1']
+            user.set_password(password)  # зашифрованный пароль
             user.save()
-
-            user = authenticate(username=username, password=password)
-
-            if user is not None and user.is_active:
-                login(request, user)
-                return HttpResponseRedirect("/")
+            user = authenticate(username=user.name, password=password)  # аутенфикация
+            if user is not None:
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
+            login(request, user)  # вход пользователя после регистрации
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-
-
-@login_required
 def request_add(request):
     if request.method == 'POST':
         form = RequestCreateForm(request.POST, request.FILES)

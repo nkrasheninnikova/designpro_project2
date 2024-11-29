@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django import forms
 from django.template.defaultfilters import default
-
 class UserProfile(User):
     fio = models.CharField(max_length=100,blank=True)
+    image = models.ImageField(upload_to='images/', default='def-avatar.jpg', blank=False)
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Категория', blank=False)
