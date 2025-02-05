@@ -16,11 +16,7 @@
         <h3>{{ name }}</h3>
         <p>{{ email }}</p>
     </div>
-    {% if avatar.username == 'default' %}
-        <a href="{% url 'add_avatar' %}">Добавить изображение профиля</a>
-    {% else %}
-        <a href="{% url 'change_img' avatar.id %}">Поменять изображение профиля</a>
-    {% endif %}
+
     <h3>Ваши заявки:</h3>
     {% if user_requests %}
         <form action="{% url 'profile_filter' %}" method="get" name="filter">

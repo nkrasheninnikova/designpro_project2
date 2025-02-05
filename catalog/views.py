@@ -67,20 +67,7 @@ def add_avatar(request):
         else:
             return render(request, 'add_avatar.html', {'form': form})
 
-def change_img(request, pk):
-    if request.method == 'GET':
-        form = AvatarForm()
-        return render(request, 'change_avatar.html', { 'form': form})
-    if request.method == 'POST':
-        form = AvatarForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data.get("image")
-            avatar = get_object_or_404(Avatar, pk=pk)
-            avatar.image=image
-            avatar.save()
-            return redirect('profile')
-        else:
-            return render(request, 'change_avatar.html', {'form': form})
+
 
 
 @login_required
